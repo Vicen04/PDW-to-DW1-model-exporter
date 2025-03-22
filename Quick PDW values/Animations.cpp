@@ -1,7 +1,8 @@
 #include "Animations.h"
 
 
-//unused
+//unused, originally for a line read directly from the console
+/*
 std::vector<std::string> Animations::split(std::string s) {
     size_t pos_start = 0, pos_end = 8, tempStart = 0, tempEnd = 2;
     std::string token, temp;
@@ -38,8 +39,9 @@ std::vector<std::string> Animations::split(std::string s) {
     tempVec.clear();
     tempVec.~vector();
     return res;
-}
+}*/
 
+//Sets all the PDW animations
 void Animations::HandleAnim(int32_t offset, uint8_t* buffer)
 {
     short framesTotal = 0, totalNodes = 0, keyframes = 0;

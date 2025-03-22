@@ -1,5 +1,8 @@
 #pragma once
 
+// For more information about how the Pocket Digimon World animations work, please read 
+//"https://docs.google.com/document/d/1Vl1tXmCynWLOi4_0Cizm4xDKvcD1Jl8Q1LCc4C2_hSY/edit?usp=sharing"
+
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -21,7 +24,7 @@ struct PDWAnimPart
     std::vector<int16_t> scaleZ;
     std::vector <uint8_t> frames;
 
-    // Construtor to set and straight up translate the 
+    // Construtor to set and straight up translate the animations to readable values
     PDWAnimPart(uint8_t* buffer, int keyFrames)
     {
         int currentOffset = 0;
@@ -92,6 +95,7 @@ struct DW1AnimPart
             (rotZ == scaleX) && (scaleX == scaleY) && (scaleY == scaleZ) && (scaleZ == true);
     }
 
+    //Translates the PDW keyframes into DW1 keyframes
     DW1AnimPart(PDWAnimPart animation, short keyFrames, int currentNode)
     {
         //textfile version
@@ -290,6 +294,7 @@ struct DW1Anim
     short framesTotal;
     bool hasScale = false;
 
+    //Set all the DW1 animations
     DW1Anim(PDWAnim anim, int totalF)
     {
         parentNodes.push_back(-1);
@@ -355,6 +360,7 @@ class Animations
 protected:    
 
     char values[2];
+    //Just a quick function to set the frame separators necessary for the DW1 animations
     char* CastToChar(int16_t value)
     {
         values[0] = value & 0xFF;
@@ -363,7 +369,7 @@ protected:
         return &values[0];
     }
 
-    std::vector<std::string> split(std::string s);
+    //std::vector<std::string> split(std::string s);
     void HandleAnim(int32_t offset, uint8_t* buffer);
     std::vector <DW1Anim> finalAnimations;
 
