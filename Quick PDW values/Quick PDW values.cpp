@@ -2,6 +2,9 @@
  
 // This program only works with an isolated file only containing the PDW animation data as of now.
 
+// Since the textures and sounds between PDW and DW1 are different, it does not creates any texture/sound data for the animations.
+// You have to manually add those, it also skips the root value when it comes to creating the animations.
+
 
 #include "Animations.h"
 
