@@ -6,6 +6,7 @@
 #include <vector>
 #include <format>
 #include <numeric> 
+#include <string>
 
 struct PDWAnimPart
 {
