@@ -88,8 +88,8 @@ int main()
 
     if ( anim.ReadFile(input) != -1)
     {
-        //anim.WriteTextFile();
-        anim.WriteBINFile();
+        anim.WriteTextFile();
+       // anim.WriteBINFile();
 
         std::cout << "Animation file created" << std::endl;
 

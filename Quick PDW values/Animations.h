@@ -99,10 +99,10 @@ struct DW1AnimPart
     DW1AnimPart(PDWAnimPart animation, short keyFrames, int currentNode)
     {
         //textfile version
-        //int currenthandler = 0x80;
+        int currenthandler = 0x80;
 
         //Bin version
-        int currenthandler = 0x8000;
+        //int currenthandler = 0x8000;
         currentFrame = 0;
         currentIteration = 0;
 
@@ -120,7 +120,7 @@ struct DW1AnimPart
             frames.push_back(animation.frames[i + 1] - animation.frames[i]);
 
             //Enable to render a text file
-            /*
+            
             if (i == 0)
             {
                 currenthandler += (PosX[i] != 0) ? 0x1 : 0x0;
@@ -161,6 +161,7 @@ struct DW1AnimPart
                     frames.pop_back();
 
                     *frames.rbegin() = *frames.rbegin() + animation.frames[i + 1] - animation.frames[i];
+                    continue;
                 }
                 //if it is the same movement, remove this keyframe and add the current movement to the previous keyframe
                 else if ((short)(currenthandler + currentNode * 0x100) == *handler.rbegin() && CheckIfOptimisable())
@@ -190,10 +191,10 @@ struct DW1AnimPart
                     currenthandler = 0x80;
                     continue;
                 }
-            }*/
+            }
 
             //disable for a text file
-            
+            /*
             if (i == 0)
             {
                 currenthandler += (PosX[i] != 0) ? 0x100 : 0x0;
@@ -234,6 +235,7 @@ struct DW1AnimPart
                     frames.pop_back();
 
                     *frames.rbegin() = *frames.rbegin() + animation.frames[i + 1] - animation.frames[i];
+                    continue;
                 }
                 //if it is the same movement, remove this keyframe and add the current values to the previous keyframe
                 else if ((short)(currenthandler + currentNode) == *handler.rbegin() && CheckIfOptimisable())
@@ -263,17 +265,17 @@ struct DW1AnimPart
                     currenthandler = 0x8000;
                     continue;
                 }
-            }
+            }*/
 
             //textfile version
-            //handler.push_back(currenthandler + currentNode * 0x100);
-            //currenthandler = 0x80;
-            //(currenthandler & 0x70) ? hasScale = true : hasScale = false;
+            handler.push_back(currenthandler + currentNode * 0x100);
+            currenthandler = 0x80;
+            (currenthandler & 0x70) ? hasScale = true : hasScale = false;
 
             //Bin version
-            handler.push_back(currenthandler + currentNode);
-            currenthandler = 0x8000;
-            (currenthandler & 0x7000) ? hasScale = true : hasScale = false;
+            //handler.push_back(currenthandler + currentNode);
+            //currenthandler = 0x8000;
+            //(currenthandler & 0x7000) ? hasScale = true : hasScale = false;
         }
     }
 };
